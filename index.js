@@ -33,8 +33,15 @@ async function run() {
     //receive data from server by post method
     app.post('/products', async(req, res) =>{
         const product = req.body;
+        console.log(product);
         const result = await productCollection.insertOne(product);
         console.log(result);
+        res.send(result)
+    })
+
+    //get
+    app.get('/products', async(req, res) =>{
+        const result = await productCollection.find().toArray();
         res.send(result)
     })
 
